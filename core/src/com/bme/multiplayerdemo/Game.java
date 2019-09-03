@@ -90,6 +90,19 @@ public class Game extends ApplicationAdapter {
 					System.out.println(j);
 				}
 			}
+		}).on("disconnectedPlayer", new Emitter.Listener() {
+			@Override
+			public void call(Object... objects) {
+				JSONObject obj = (JSONObject) objects[0];
+				try{
+					String id = obj.getString("id");
+					Gdx.app.log("SocketIO","Player Disconnected: " + id);
+				}
+				catch(JSONException e){
+					System.out.println(e);
+				}
+
+			}
 		});
 	}
 }
